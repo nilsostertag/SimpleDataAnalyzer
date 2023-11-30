@@ -11,7 +11,7 @@ void DataAnalyzer::start() {
     inputDataset();
     calculateDescriptiveStatistics();
     //sortDataset();
-    filterDataset(5.0);
+    filterDataset(0.3, 5.75);
 }
 
 void DataAnalyzer::inputDataset() {
@@ -36,31 +36,55 @@ void DataAnalyzer::inputDataset() {
         }
     }
 
-    std::cout << "Entered dataset: ";
+    std::cout << "Entered dataset: " << std::endl;
     for(double val : dataset) {
         std::cout << val << std::endl;
     }
 }
 
 void DataAnalyzer::calculateDescriptiveStatistics() {
+    std::cout << "\nDescriptive Statistics:\n";
+    calculateMean();
+    getMinimum();
+    getMaximum();
+}
+
+void DataAnalyzer::calculateMean() {
     if (dataset.empty()) {
         std::cerr << "Error: The dataset is empty. Please enter data first." << std::endl;
         return;
     }
 
     double mean = std::accumulate(dataset.begin(), dataset.end(), 0.0) / dataset.size();
-
-    std::cout << "\nDescriptive Statistics:\n";
     std::cout << "Mean: " << mean << std::endl;
 }
 
-void DataAnalyzer::filterDataset(double threshold) {
-    dataset.erase(std::remove_if(dataset.begin(), dataset.end(), [threshold](double val) {
-        return val < threshold;
-    }), dataset.end());
+void DataAnalyzer::getMinimum() {
+    if (dataset.empty()) {
+        std::cerr << "Error: The dataset is empty. Please enter data first." << std::endl;
+        return;
+    }
+    double minimum = *std::min_element(dataset.begin(), dataset.end());
+    std::cout << "Minimum: " << minimum << std::endl;
+}
 
-    std::cout << "\nFiltered Datset (values >= " << threshold << "): " << std::endl;
-    for(double val : dataset) {
+void DataAnalyzer::getMaximum() {
+    if (dataset.empty()) {
+        std::cerr << "Error: The dataset is empty. Please enter data first." << std::endl;
+        return;
+    }
+    double maximum = *std::max_element(dataset.begin(), dataset.end());
+    std::cout << "Maximum: " << maximum << std::endl;
+}
+
+void DataAnalyzer::filterDataset(double thresholdMin, double thresholdMax) {
+    workset = dataset;
+    workset.erase(std::remove_if(workset.begin(), workset.end(), [thresholdMin, thresholdMax](double val) {
+        return val < thresholdMin || val > thresholdMax;
+    }), workset.end());
+
+    std::cout << "\nFiltered Datset (values between " << thresholdMin << " and " << thresholdMax << "): " << std::endl;
+    for(double val : workset) {
         std::cout << val << std::endl;
     }
 }

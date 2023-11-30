@@ -9,11 +9,15 @@ class DataAnalyzer {
 
     private:
         std::vector<double> dataset;
+        std::vector<double> workset;
 
     void inputDataset();
     void calculateDescriptiveStatistics();
+    void calculateMean();
+    void getMinimum();
+    void getMaximum();
     void sortDataset();
-    void filterDataset(double threshold);
+    void filterDataset(double thresholdMin, double thresholdMax);
 };
 
 #endif
