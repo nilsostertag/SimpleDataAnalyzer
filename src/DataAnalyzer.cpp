@@ -11,7 +11,8 @@ void DataAnalyzer::start() {
     inputDataset();
     calculateDescriptiveStatistics();
     //sortDataset();
-    filterDataset(0.3, 5.75);
+    //filterDataset(0.3, 5.75);
+    menu();
 }
 
 void DataAnalyzer::inputDataset() {
@@ -19,9 +20,10 @@ void DataAnalyzer::inputDataset() {
     
     std::string input;
     while (std::cin >> input) {
+        // Exit loop if the user enters 'q' or 'Q'
         if (input == "q" || input == "Q") {
             std::getchar();
-            break; // Exit loop if the user enters 'q' or 'Q'
+            break; 
         }
 
         try {
@@ -87,4 +89,33 @@ void DataAnalyzer::filterDataset(double thresholdMin, double thresholdMax) {
     for(double val : workset) {
         std::cout << val << std::endl;
     }
+}
+
+void DataAnalyzer::menu() {
+    help();
+    std::string userinput;
+    std::cin >> userinput;
+
+    
+}
+
+void DataAnalyzer::help() {
+    std::cout << "SimpleDataAnalyzer Menu\n\tOperation options:" << std::endl;
+    std::cout << "!mean - Calculate the mean value of the dataset" << std::endl;
+    std::cout << "!min - Determine the minimum value of the dataset" << std::endl;
+    std::cout << "!max - Determine the maximum value of the dataset" << std::endl;
+}
+
+void processCommand(const std::string& command) {
+    std::istringstream iss(command);
+    std::vector<std::string> arguments;
+    // Tokenize the command using std::getline
+    std::string argument;
+    while (std::getline(iss, argument, ' ')) {
+        arguments.push_back(argument);
+    }
+}
+
+void executeCommand(std::vector<std::string> command) {
+    //TODO
 }
