@@ -4,7 +4,7 @@
 int main() {
     DataAnalyzer analyzer;
     analyzer.start();
-
+    
     std::getchar();
     return 0;
 }
