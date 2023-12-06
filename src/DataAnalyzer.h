@@ -18,6 +18,7 @@ class DataAnalyzer {
     void getMaximum();
     void sortDataset();
     void filterDataset(double thresholdMin, double thresholdMax);
+    
 };
 
 #endif

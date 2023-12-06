@@ -6,12 +6,15 @@
 #include <sstream>
 
 #include "DataAnalyzer.h"
+#include "InteractionManager.h"
 
 void DataAnalyzer::start() {
     inputDataset();
     calculateDescriptiveStatistics();
     //sortDataset();
-    filterDataset(0.3, 5.75);
+    //filterDataset(0.3, 5.75);
+    InteractionManager interactionManager;
+    interactionManager.showMenu();
 }
 
 void DataAnalyzer::inputDataset() {
@@ -19,9 +22,10 @@ void DataAnalyzer::inputDataset() {
     
     std::string input;
     while (std::cin >> input) {
+        // Exit loop if the user enters 'q' or 'Q'
         if (input == "q" || input == "Q") {
             std::getchar();
-            break; // Exit loop if the user enters 'q' or 'Q'
+            break; 
         }
 
         try {
