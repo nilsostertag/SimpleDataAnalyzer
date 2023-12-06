@@ -28,9 +28,9 @@ void InteractionManager::awaitUserInput() {
 
 void InteractionManager::help() {
     std::cout << "SimpleDataAnalyzer Menu\n\tOperation options:" << std::endl;
-    std::cout << "!mean - Calculate the mean value of the dataset" << std::endl;
-    std::cout << "!min - Determine the minimum value of the dataset" << std::endl;
-    std::cout << "!max - Determine the maximum value of the dataset" << std::endl;
+    std::cout << "<dataset> mean - Calculate the mean value of the dataset" << std::endl;
+    std::cout << "<dataset> min - Determine the minimum value of the dataset" << std::endl;
+    std::cout << "<dataset> max - Determine the maximum value of the dataset" << std::endl;
 
     awaitUserInput();
 }
