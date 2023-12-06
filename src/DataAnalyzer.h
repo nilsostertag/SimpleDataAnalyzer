@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef DATA_ANALYZER_H
 #define DATA_ANALYZER_H
 

@@ -1,7 +1,10 @@
+#pragma once
+
 #ifndef INTERACTION_MANAGER_H
 #define INTERACTION_MANAGER_H
 
 #include <vector>
+#include <string>
 
 class InteractionManager {
     public:
