@@ -18,14 +18,6 @@ void InteractionManager::awaitUserInput() {
     executeCommand(arguments);
 }
 
-void InteractionManager::awaitUserInput() {
-    std::string userInput;
-    std::cin >> userInput;
-
-    std::vector<std::string> arguments = processCommand(userInput);
-    executeCommand(arguments);
-}
-
 void InteractionManager::help() {
     std::cout << "SimpleDataAnalyzer Menu\n\tOperation options:" << std::endl;
     std::cout << "<dataset> mean - Calculate the mean value of the dataset" << std::endl;

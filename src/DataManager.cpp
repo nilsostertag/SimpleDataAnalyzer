@@ -58,4 +58,12 @@ std::vector<std::string> DataManager::retrievePropsFromLine(const std::string& l
     return retrievedProps;
 }
 
+std::vector<double> DataManager::parseVariables(std::vector<std::string> dataSet) {
+    std::vector<double> parsed;
+    for(int i = 0; i < dataSet.size(); i++) {
+        parsed.push_back(std::stod(dataSet[i]));
+    }
+    return parsed;
+}
+
 //g++ main.cpp DataManager.cpp -o "C:/Users/nilso/Documents/VSCode/SimpleDataAnalyzer/build/ImportTestRun.exe"

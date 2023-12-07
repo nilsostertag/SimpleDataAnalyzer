@@ -13,8 +13,8 @@ void DataAnalyzer::start() {
     calculateDescriptiveStatistics();
     //sortDataset();
     //filterDataset(0.3, 5.75);
-    InteractionManager interactionManager;
-    interactionManager.showMenu();
+    //InteractionManager interactionManager;
+    //interactionManager.showMenu();
 }
 
 void DataAnalyzer::inputDataset() {
@@ -48,37 +48,44 @@ void DataAnalyzer::inputDataset() {
 
 void DataAnalyzer::calculateDescriptiveStatistics() {
     std::cout << "\nDescriptive Statistics:\n";
-    calculateMean();
     getMinimum();
     getMaximum();
 }
 
-void DataAnalyzer::calculateMean() {
-    if (dataset.empty()) {
+double DataAnalyzer::calculateMean(const std::string& key, const std::vector<std::string>& dataSet) {
+    if (dataSet.empty()) {
         std::cerr << "Error: The dataset is empty. Please enter data first." << std::endl;
-        return;
+        return 0;
     }
 
-    double mean = std::accumulate(dataset.begin(), dataset.end(), 0.0) / dataset.size();
-    std::cout << "Mean: " << mean << std::endl;
+    //double mean = std::accumulate(dataSet.begin(), dataSet.end(), 0.0) / dataSet.size();
+    double acc = 0;
+    for(int i = 0; i < dataSet.size(); i++) {
+        acc += std::stod(dataSet[i]);
+    }
+    double mean = acc / dataSet.size();
+    std::cout << "Mean of " << key << ": " << mean << std::endl;
+    return mean;
 }
 
-void DataAnalyzer::getMinimum() {
+double DataAnalyzer::getMinimum() {
     if (dataset.empty()) {
         std::cerr << "Error: The dataset is empty. Please enter data first." << std::endl;
-        return;
+        return 0;
     }
     double minimum = *std::min_element(dataset.begin(), dataset.end());
     std::cout << "Minimum: " << minimum << std::endl;
+    return minimum;
 }
 
-void DataAnalyzer::getMaximum() {
+double DataAnalyzer::getMaximum() {
     if (dataset.empty()) {
         std::cerr << "Error: The dataset is empty. Please enter data first." << std::endl;
-        return;
+        return 0;
     }
     double maximum = *std::max_element(dataset.begin(), dataset.end());
     std::cout << "Maximum: " << maximum << std::endl;
+    return maximum;
 }
 
 void DataAnalyzer::filterDataset(double thresholdMin, double thresholdMax) {

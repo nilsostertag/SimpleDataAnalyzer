@@ -8,18 +8,19 @@
 class DataAnalyzer {
     public:
         void start();
+        double calculateMean(const std::string& key, const std::vector<std::string>& dataSet);
+        void inputDataset();
+        void calculateDescriptiveStatistics();
+        double getMinimum();
+        double getMaximum();
+        void sortDataset();
+        void filterDataset(double thresholdMin, double thresholdMax);
 
     private:
         std::vector<double> dataset;
         std::vector<double> workset;
 
-    void inputDataset();
-    void calculateDescriptiveStatistics();
-    void calculateMean();
-    void getMinimum();
-    void getMaximum();
-    void sortDataset();
-    void filterDataset(double thresholdMin, double thresholdMax);
+    
     
 };
 

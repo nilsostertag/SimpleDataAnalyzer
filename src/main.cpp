@@ -8,10 +8,19 @@ int main() {
     
     DataManager dataManager;
     std::map<std::string, std::vector<std::string>> importedDataset = dataManager.importDataset("..\\resouces\\AverageWorldTemp2020.csv", ',');
-    std::cout << "Keys in the Dataset:";
+    std::cout << "Dataset:" << std::endl;
     for (auto it = importedDataset.begin(); it != importedDataset.end(); ++it) {
-        std::cout << it->first << " ";
+        std::cout << it->first << "\t";
     }
+    std::string selector = "Jan";
+    std::vector<std::string> selected = importedDataset[selector];
+
+    for(std::string value : selected) {
+        std::cout << value << std::endl;
+    }
+
+    DataAnalyzer dataAnalyzer;
+    dataAnalyzer.calculateMean(selector, selected);
 
     std::getchar();
     return 0;
