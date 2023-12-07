@@ -9,10 +9,10 @@
 
 class DataManager  {
     public:
-        std::map<std::string, std::vector<std::string>> importDataset(std::string path);
+        std::map<std::string, std::vector<std::string>> importDataset(const std::string& path, const char& separator);
 
     private:
-        std::vector<std::string> retrievePropsFromLine(std::string line);
+        std::vector<std::string> retrievePropsFromLine(const std::string& line, const char& separator);
 };
 
 #endif
