@@ -4,7 +4,7 @@
 
 #include <DataManager.h>
 
-std::map<std::string, std::vector<std::string>> DataManager::importDataset(const std::string& path, const char* separator, std::string nameToMemorize) {
+std::map<std::string, std::vector<std::string>> DataManager::importDataset(const std::string& path, const char* separator) {
     
     std::map<std::string, std::vector<std::string>> importedDataset;
     
@@ -43,7 +43,6 @@ std::map<std::string, std::vector<std::string>> DataManager::importDataset(const
     std::cout << "Dataset import succeeded." << std::endl;
     std::cout << "Keys found: " << mapKeys.size() << std::endl;
     std::cout << "Total lines imported: " << linecounter << std::endl;
-    this->datasetMemory[nameToMemorize] = importedDataset;
     return importedDataset;
 }
 

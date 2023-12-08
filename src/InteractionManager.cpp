@@ -23,7 +23,7 @@ void InteractionManager::help() {
     std::cout << "SimpleDataAnalyzer Menu\n\tOperation options:" << std::endl;
     std::cout << "<dataset> mean - Calculate the mean value of the dataset" << std::endl;
     std::cout << "<dataset> min - Determine the minimum value of the dataset" << std::endl;
-    std::cout << "<dataset> max - Determine the maximum value of the dataset" << std::endl;
+    std::cout << "<dataset> max - Determine the maximum value of the dataset\n\n" << std::endl;
 
     awaitUserInput();
 }
@@ -49,7 +49,7 @@ void InteractionManager::executeCommand(const std::vector<std::string>& argument
     if(arguments.size() == 5 && arguments[0] == "import") {
         DataManager dataManager;
         try{
-            dataManager.importDataset(arguments[1], arguments[4].c_str(), arguments[3]);
+            dataManager.importDataset(arguments[1], arguments[4].c_str());
         } catch (std::string err) {
             std::cerr << err << std::endl;
         }        

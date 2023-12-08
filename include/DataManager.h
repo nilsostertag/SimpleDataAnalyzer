@@ -9,7 +9,7 @@
 
 class DataManager  {
     public:
-        std::map<std::string, std::vector<std::string>> importDataset(const std::string& path, const char* separator, std::string nameToMemorize);
+        std::map<std::string, std::vector<std::string>> importDataset(const std::string& path, const char* separator);
         std::vector<double> parseVariables(std::vector<std::string> dataSet);
         std::map<std::string, std::map<std::string, std::vector<std::string>>> datasetMemory;
 
