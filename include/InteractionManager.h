@@ -11,6 +11,8 @@ class InteractionManager {
         void showMenu();
         void help();
         void awaitUserInput();
+
+    private:
         std::vector<std::string> processCommand(std::string command);
         void executeCommand(const std::vector<std::string>& arguments);
 };

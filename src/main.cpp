@@ -1,8 +1,8 @@
 #include <iostream>
-#include "DataAnalyzer.h"
-#include "DataManager.h"
+#include <InteractionManager.h>
 
 int main() {
+    /*
     //DataAnalyzer analyzer;
     //analyzer.start();
     
@@ -21,6 +21,10 @@ int main() {
 
     DataAnalyzer dataAnalyzer;
     dataAnalyzer.calculateMean(selector, selected);
+    */
+
+    InteractionManager interactionManager;
+    interactionManager.showMenu();
 
     std::getchar();
     return 0;

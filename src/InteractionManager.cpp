@@ -1,7 +1,8 @@
 #include <iostream>
 #include <sstream>
 
-#include "InteractionManager.h"
+#include <InteractionManager.h>
+#include <DataManager.h>
 
 void InteractionManager::showMenu() {
     system("cls");    
@@ -40,4 +41,18 @@ std::vector<std::string> InteractionManager::processCommand(std::string command)
 
 void InteractionManager::executeCommand(const std::vector<std::string>& arguments) {
     //TODO
+    /*  Possible commands
+        - import <filepath> as <datasetname> <separator>
+        - print <datasetname>
+    */    
+
+    if(arguments.size() == 5 && arguments[0] == "import") {
+        DataManager dataManager;
+        try{
+            dataManager.importDataset(arguments[1], arguments[4].c_str(), arguments[3]);
+        } catch (std::string err) {
+            std::cerr << err << std::endl;
+        }        
+    }
+    return;
 }
