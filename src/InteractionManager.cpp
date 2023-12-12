@@ -46,10 +46,10 @@ void InteractionManager::executeCommand(const std::vector<std::string>& argument
         - print <datasetname>
     */    
 
-    if(arguments.size() == 5 && arguments[0] == "import") {
+    if(arguments[0] == "import") {
         DataManager dataManager;
         try{
-            dataManager.importDataset(arguments[1], arguments[4].c_str());
+            dataManager.importDataset(arguments[1], ',');
         } catch (std::string err) {
             std::cerr << err << std::endl;
         }        
