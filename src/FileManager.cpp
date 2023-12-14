@@ -9,3 +9,8 @@ std::vector<std::string> FileManager::getAllFilesInDir(const std::string& dirPat
     }
     return collected;
 }
+
+std::string FileManager::getFileName(const std::string& path) {
+    std::filesystem::path file(path);
+    return file.filename().string();
+}

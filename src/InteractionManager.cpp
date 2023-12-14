@@ -1,14 +1,28 @@
 #include <iostream>
 #include <sstream>
 
-#include <InteractionManager.h>
-#include <DataManager.h>
+#include <InteractionManager.hpp>
+#include <DataManager.hpp>
+#include <FileManager.hpp>
 
-void InteractionManager::showMenu() {
+void InteractionManager::showMenu(const std::string& dirPath) {
     system("cls");    
     help();
 
     awaitUserInput();
+}
+
+std::vector<std::string> InteractionManager::getDirOverview(const std::string& dirPath) {
+    FileManager fileManager;
+    std::vector<std::string> filePaths = fileManager.getAllFilesInDir(dirPath);
+
+    std::cout << "\tFiles inside chosen directory: " << dirPath << std::endl;
+    for(int i = 0; i < filePaths.size(); i++) {
+        std::string retrievedFileName = fileManager.getFileName(filePaths[i]);
+        std::cout << "\t" << i << "\t-\t" << retrievedFileName << std::endl;
+    }
+
+    return filePaths;
 }
 
 void InteractionManager::awaitUserInput() {
@@ -20,12 +34,13 @@ void InteractionManager::awaitUserInput() {
 }
 
 void InteractionManager::help() {
-    std::cout << "SimpleDataAnalyzer Menu\n\tOperation options:" << std::endl;
-    std::cout << "<dataset> mean - Calculate the mean value of the dataset" << std::endl;
-    std::cout << "<dataset> min - Determine the minimum value of the dataset" << std::endl;
-    std::cout << "<dataset> max - Determine the maximum value of the dataset\n\n" << std::endl;
+    std::cout << "\tSimpleDataAnalyzer Menu\n\tOperation options:" << std::endl;
+    std::cout << "\timport\t-\tImport a dataset" << std::endl;
+    std::cout << "\tmean\t-\tCalculate the mean value of the dataset" << std::endl;
+    std::cout << "\tmin\t-\tDetermine the minimum value of the dataset" << std::endl;
+    std::cout << "\tmax\t-\tDetermine the maximum value of the dataset\n\n" << std::endl;
 
-    awaitUserInput();
+    //awaitUserInput();
 }
 
 std::vector<std::string> InteractionManager::processCommand(std::string command) {
@@ -40,19 +55,13 @@ std::vector<std::string> InteractionManager::processCommand(std::string command)
 }
 
 void InteractionManager::executeCommand(const std::vector<std::string>& arguments) {
-    //TODO
-    /*  Possible commands
-        - import <filepath> as <datasetname> <separator>
-        - print <datasetname>
-    */    
-
     if(arguments[0] == "import") {
-        DataManager dataManager;
-        try{
-            dataManager.importDataset(arguments[1], ',');
-        } catch (std::string err) {
-            std::cerr << err << std::endl;
-        }        
+        std::vector<std::string> filesInDir = getDirOverview(dirPath);
+        std::cout << "\n\tPlease enter the index of which dataset you want to import: ";
+        char index;
+        std::cin >> index;
+        DataManager dataManeger;
+        dataManeger.importDataset(filesInDir[int(index)], '/');
     }
     return;
 }
