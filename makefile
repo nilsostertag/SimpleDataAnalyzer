@@ -6,7 +6,7 @@ SRC     := src
 INCLUDE := include
 
 LIBRARIES   :=
-EXECUTABLE  := main
+EXECUTABLE  := SimpleDataAnalyzer
 
 # List of source files
 SRCS := $(wildcard $(SRC)/*.cpp)
