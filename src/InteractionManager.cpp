@@ -1,9 +1,9 @@
 #include <iostream>
 #include <sstream>
 
-#include <InteractionManager.hpp>
-#include <DataManager.hpp>
-#include <FileManager.hpp>
+#include <InteractionManager.h>
+#include <DataManager.h>
+#include <FileManager.h>
 
 void InteractionManager::showMenu(const std::string& dirPath) {
     system("cls");    
@@ -35,10 +35,11 @@ void InteractionManager::awaitUserInput() {
 
 void InteractionManager::help() {
     std::cout << "\tSimpleDataAnalyzer Menu\n\tOperation options:" << std::endl;
-    std::cout << "\timport\t-\tImport a dataset" << std::endl;
-    std::cout << "\tmean\t-\tCalculate the mean value of the dataset" << std::endl;
-    std::cout << "\tmin\t-\tDetermine the minimum value of the dataset" << std::endl;
-    std::cout << "\tmax\t-\tDetermine the maximum value of the dataset\n\n" << std::endl;
+    std::cout << "\timport\t\t-\tImport a dataset" << std::endl;
+    std::cout << "\tdisplay <all / column name>\t\t-\tDisplay either the full dataset or just one column of it" << std::endl;
+    std::cout << "\tmean <column name>\t\t-\tCalculate the mean value of the dataset" << std::endl;
+    std::cout << "\tmin <column name>\t\t-\tDetermine the minimum value of the dataset" << std::endl;
+    std::cout << "\tmax <column name>\t\t-\tDetermine the maximum value of the dataset\n\n" << std::endl;
 
     //awaitUserInput();
 }

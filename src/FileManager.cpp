@@ -1,4 +1,4 @@
-#include <FileManager.hpp>
+#include <FileManager.h>
 
 std::vector<std::string> FileManager::getAllFilesInDir(const std::string& dirPath) {
     std::vector<std::string> collected;

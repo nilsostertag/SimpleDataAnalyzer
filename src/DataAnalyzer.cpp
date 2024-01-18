@@ -5,8 +5,8 @@
 #include <map>
 #include <sstream>
 
-#include <DataAnalyzer.hpp>
-#include <InteractionManager.hpp>
+#include <DataAnalyzer.h>
+#include <InteractionManager.h>
 
 void DataAnalyzer::start() {
     inputDataset();
