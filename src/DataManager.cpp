@@ -2,47 +2,58 @@
 #include <fstream>
 #include <sstream>
 
-#include <DataManager.hpp>
+#include <DataManager.h>
 
-std::map<std::string, std::vector<std::string>> DataManager::importDataset(const std::string& path, const char& separator) {
+DataSet DataManager::importDataset(const std::string& path, const char& separator) {
     
-    std::map<std::string, std::vector<std::string>> importedDataset;
+    DataSet importedDataset;
+    std::map<std::string, std::vector<std::string>> iData;
     
-    std::ifstream file(path);
+    try{
+        std::ifstream file(path);
 
-    if(!file.is_open()) {
-        std::cerr << "Error opening file" << std::endl;
+        if(!file.is_open()) {
+            std::cerr << "Error opening file" << std::endl;
         return importedDataset;
-    }
-
-    std::string line;
-    bool isFirstLine = true;
-
-    std::vector<std::string> mapKeys;
-    int linecounter = 0;
-    while(std::getline(file, line)) {
-        if(isFirstLine) {
-            mapKeys = retrievePropsFromLine(line, separator);
-            isFirstLine = false;
         }
-        else {
-            std::vector<std::string> properties = retrievePropsFromLine(line, separator);
-            if(mapKeys.size() == properties.size()) {
-                for(int i = 0; i < mapKeys.size(); i++) {
-                try {
-                    std::string key = mapKeys[i];
-                    importedDataset[key].push_back(properties[i]);
-                    linecounter++;
-                } catch (const std::string err) {
-                    std::cerr << "Error: " << err << std::endl;
+
+        std::string line;
+        bool isFirstLine = true;
+
+        std::vector<std::string> mapKeys;
+        int linecounter = 0;
+        while(std::getline(file, line)) {
+            if(isFirstLine) {
+                mapKeys = retrievePropsFromLine(line, separator);
+                isFirstLine = false;
+            }
+            else {
+                std::vector<std::string> properties = retrievePropsFromLine(line, separator);
+                if(mapKeys.size() == properties.size()) {
+                    for(int i = 0; i < mapKeys.size(); i++) {
+                    try {
+                        std::string key = mapKeys[i];
+                        iData[key].push_back(properties[i]);
+                        linecounter++;
+                    } catch (const std::string err) {
+                        std::cerr << "Error: " << err << std::endl;
+                        }
                     }
                 }
             }
         }
+        std::cout << "Dataset import succeeded." << std::endl;
+        std::cout << "Keys found: " << mapKeys.size() << std::endl;
+        std::cout << "Total lines imported: " << linecounter << std::endl;
+
+        importedDataset.origin = path;
+        importedDataset.columns = mapKeys;
+        importedDataset.data = iData;
+        return importedDataset;
+    } 
+    catch(const std::exception& ex) {
+        std::cerr << "Error: " << ex << std::endl;
     }
-    std::cout << "Dataset import succeeded." << std::endl;
-    std::cout << "Keys found: " << mapKeys.size() << std::endl;
-    std::cout << "Total lines imported: " << linecounter << std::endl;
     return importedDataset;
 }
 
